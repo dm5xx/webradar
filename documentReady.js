@@ -15,7 +15,10 @@ $(document).ready(function () {
         isCleanup = false;
     else
         isCleanup = true;
+        
+  	$('#myClock').draggable();
 
+    startClock();
     updateDxSpots(lastCallingId, init);
     setInterval(function () { updateDxSpots(lastCallingId, update); }, 5000);
 });

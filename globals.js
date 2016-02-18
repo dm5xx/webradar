@@ -2,6 +2,7 @@ var lastCallingId = '0';
 var globalJsonData = [];
 var markers = [];
 var spotmarkers = [];
+var markerPath = [];
 var collectivJsonArray = new Array();
 var lat1 = 49.356383;
 var lng1 = 11.1605;

@@ -1,3 +1,4 @@
+// Clean all from the map
 function clearMarkers() {
     markers.forEach(function(element) {
         map.removeLayer(element);
@@ -5,15 +6,19 @@ function clearMarkers() {
 
     spotmarkers.forEach(function (element) {
         map.removeLayer(element);
-    }, this)
+    }, this);
+    
+    markerPath.forEach(function (element) {
+        map.removeLayer(element);
+    }, this);
 }
-
 
 // Deletes all markers in the array by removing references to them.
 function deleteMarkers() {
 	clearMarkers();
 	markers = [];
 	spotmarkers = [];
+    markerPath = [];
 }
 
 // add a marker
@@ -21,7 +26,7 @@ function addMyMarker(aCurrentElement) {
     createDxMarkerSet(aCurrentElement);
 }
 
-
+// init function for the markers
 function initmarkers() {
     if (globalJsonData.length > showOnly)
         markerFillHandler(globalJsonData);
@@ -29,11 +34,13 @@ function initmarkers() {
         window.setTimeout(initmarkers, 1000);
 }
 
+// add new dxentries as markers: resort the collective array from newest to oldest
 function refillmarkers() {
     var descendingArray = collectivJsonArray.slice(0);
     markerFillHandler(descendingArray.reverse());
 }
 
+// add new dxentries as markers
 function markerFillHandler(sourceArray) {
     if (showOnly > sourceArray.length)
         showOnly = sourceArray.length;
@@ -47,6 +54,7 @@ function markerFillHandler(sourceArray) {
     isInit = true;
 }
 
+// prepare the data
 function createDxMarkerSet(myElementSet) {
 
     var latlong = new L.LatLng(myElementSet.lat, myElementSet.lon);
@@ -68,14 +76,17 @@ function createDxMarkerSet(myElementSet) {
 }
 
 
+// add a marker dx information
 function addDxmarker(callInfo) {
     addmarker(callInfo, false);
 }
 
+// add a marker spotter information
 function addSpotmarker(callInfo) {
     addmarker(callInfo, true);
 }
 
+// add marker functionality
 function addmarker(callInfo, isSpotter) {
 
     var actualLatLon;
@@ -122,11 +133,12 @@ function addmarker(callInfo, isSpotter) {
 
 function addPath(callInfo) {
     var Geodesic = L.geodesic([[callInfo.LatLon, callInfo.SLatLon]], {
-        weight: 1,
-        opacity: 0.5,
-        color: 'blue',
+        weight: 2,
+        color: 'red',
         steps: 100
     }).addTo(map);
+    
+    markerPath.push(Geodesic);
 }
 
 /*---------------------------------------------------------- Callbacks ------------------------------------------- */
