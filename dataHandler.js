@@ -32,7 +32,7 @@ var getAllContent = function (jsonMyUrl, callback) {
 }
 
 
-//
+// 
 var jsonObjectCollector = function (cleanUpCallBack) {
 
     var globalLenght = globalJsonData.length;
@@ -81,7 +81,6 @@ var init = function (data) {
 
 
 // expand the array functionality...
-
 Array.prototype.inArray = function (comparer) {
     for (var i = 0; i < this.length; i++) {
         if (comparer(this[i])) return true;
