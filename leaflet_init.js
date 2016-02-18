@@ -1,4 +1,4 @@
-var map = new L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/{type}/{z}/{x}/{y}.{ext}', {
+var MapQuestOpen_OSM = new L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/{type}/{z}/{x}/{y}.{ext}', {
 	type: 'map',
 	ext: 'png',
 	attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -6,8 +6,8 @@ var map = new L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/{type}/{z}/{x}/
 });
 		///var map = L.map('map').setView([20, 30], 3, layers : [MapQuestOpen_OSM]);
 var mapCenter = new L.LatLng(20,30);
-var map = new L.map('map', { center : mapCenter, zoom : 3, layers : [map] })
-map.on("load", initmarkers);
+var map = new L.map('map', { center : mapCenter, zoom : 3, layers : [MapQuestOpen_OSM] })
+MapQuestOpen_OSM.on("load", initmarkers);
 
 var t = L.terminator();
 t.addTo(map);
